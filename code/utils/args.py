@@ -41,7 +41,7 @@ def parse_args():
                       help='Number of workers for dataloaders')
     parser.add_argument('--epochs', type=int, default=40, 
                       help="Number of training epochs")
-    parser.add_argument('--seed', type=int, default=123, 
+    parser.add_argument('--seed', type=int, default=42, 
                       help="Random seed for reproducibility")
     parser.add_argument('--patience', type=int, default=0,
                       help="Number of epochs to wait for improvement before early stopping")
