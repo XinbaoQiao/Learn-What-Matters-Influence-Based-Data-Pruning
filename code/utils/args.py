@@ -4,7 +4,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Decentralized Learning Project')
     
     # Stage Parameters
-    parser.add_argument('--stage', type=int, default=2, choices=[1, 2],
+    parser.add_argument('--stage', type=int, default=1, choices=[1, 2],
                       help="Which stage to run: 1 for full dataset training, 2 for pruned dataset training")
     
     # Dataset Parameters
@@ -73,7 +73,7 @@ def parse_args():
     parser.add_argument('--alpha', type=float, default=0.8, 
                       help="Alpha parameter for Dirichlet distribution")
     parser.add_argument('--train_ratio', type=float, default=0.6, help='Ratio of training set to use (0~1)')
-    parser.add_argument('--pruning_algorithm', type=str, default='if', choices=['if','delete', 'dice', 'random', 'noprune'], help='Algorithm to use for dataset pruning')
+    parser.add_argument('--pruning_algorithm', type=str, default='delete', choices=['if','delete', 'dice', 'random', 'noprune'], help='Algorithm to use for dataset pruning')
 
     args = parser.parse_args()
 
