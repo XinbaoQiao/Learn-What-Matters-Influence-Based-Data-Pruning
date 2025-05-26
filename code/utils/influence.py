@@ -367,7 +367,8 @@ def compute_delete_scores(models_dir, train_dataset, val_loader, device, model_c
         batch_size = args.batch_size
         train_dataloaders = create_dataloaders(train_dataset, num_workers, node_datasize, batch_size, None, nb_class)
         sample2worker = get_sample2worker_mapping(train_dataloaders)
-    
+
+    # for t in range(0, len(model_state_dicts), len(model_state_dicts) // 5):
     for t in range(len(model_state_dicts)):
         print(f"\nComputing delete scores for epoch {t}")
         
