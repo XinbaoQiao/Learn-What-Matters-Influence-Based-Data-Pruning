@@ -4,8 +4,6 @@ This project implements a decentralized learning framework for training neural n
 Crucially, this project now includes implementations of various **data influence calculation methods (Influence Function, DICE, Delete)** to identify and potentially prune less influential data samples for improved efficiency and performance.
 
 ## Installation
-1. Ensure you have Python installed on your system.
-2. Install the required dependencies:
    ```bash
    pip install torch torchvision numpy pydvl joblib zarr distributed matplotlib seaborn
    ```
