@@ -16,7 +16,7 @@ Crucially, this project now includes implementations of various **data influence
    ```
 2. Run the training process in two stages:
    
-   **Stage 1: Train with the full dataset and calculate influence scores.**
+   **Stage 1: Train with the full dataset.**
    ```bash
    python main.py --stage 1 [other arguments like --dataset_name, --model, --num_workers, --epochs, --pruning_algorithm etc.]
    ```
