@@ -4,7 +4,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Decentralized Learning Project')
     
     # Stage Parameters
-    parser.add_argument('--stage', type=int, default=1, choices=[1, 2],
+    parser.add_argument('--stage', type=int, default=2, choices=[1, 2],
                       help="Which stage to run: 1 for full dataset training, 2 for pruned dataset training")
     
     # Dataset Parameters

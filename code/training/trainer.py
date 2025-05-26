@@ -6,7 +6,6 @@ import copy
 from utils.scheduler import Warmup_MultiStepLR
 from utils.early_stopping import EarlyStopping
 from workers.worker_vision import Worker_Vision
-from visualization.plot_utils import plot_metrics
 from utils.utils import generate_P, update_dsgd, merge_without_update, merge_model
 from torch.optim.lr_scheduler import ExponentialLR
 import numpy as np
@@ -203,6 +202,3 @@ class Trainer:
         np.save(os.path.join(metrics_dir, 'test_losses.npy'), np.array(test_losses))
         np.save(os.path.join(metrics_dir, 'test_accs.npy'), np.array(test_accs))
 
-        print(f"Plotting metrics to {self.result_dir}")
-        # Plot all metrics
-        plot_metrics(train_losses, train_accs, valid_losses, valid_accs, test_losses, test_accs, self.result_dir)
