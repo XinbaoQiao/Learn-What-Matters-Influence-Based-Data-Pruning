@@ -14,11 +14,21 @@ Crucially, this project now includes implementations of various **data influence
    git clone <repository-url>
    cd decentralized_learning
    ```
-2. Run the main script:
+2. Run the training process in two stages:
+   
+   **Stage 1: Train with the full dataset and calculate influence scores.**
    ```bash
-   python main.py
+   python main.py --stage 1 [other arguments like --dataset_name, --model, --num_workers, --epochs, --pruning_algorithm etc.]
    ```
-   Use command-line arguments to configure dataset, model, decentralized learning parameters, and influence calculation methods (e.g., `--pruning_algorithm if`, `--stage 2`).
+   This will train the model on the full dataset and save the necessary models and indices for influence calculation.
+
+   **Stage 2: Train with the pruned dataset.**
+   ```bash
+   python main.py --stage 2 --train_ratio [ratio] [same other arguments as Stage 1]
+   ```
+   Replace `[ratio]` with the desired training data ratio after pruning (e.g., 0.5 for 50%). This stage will load the influence scores (calculated in Stage 1) and prune the dataset accordingly before training.
+
+   Ensure you use the same hyperparameters (dataset, model, num_workers, epochs, etc.) for both Stage 1 and Stage 2 to maintain consistency.
 
 ## Project Structure
 ```
