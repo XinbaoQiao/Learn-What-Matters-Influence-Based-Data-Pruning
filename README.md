@@ -1,5 +1,5 @@
 ## Overview
-This project implements a decentralized learning framework for training neural networks using multiple workers. It supports various datasets (CIFAR10, CIFAR100, TinyImageNet) and models (SqueezeNet, ResNet18, ResNet50). Each worker uses SGD as the optimizer, and the project includes features like learning rate scheduling and non-IID data distribution.
+This project implements a decentralized learning framework for training neural networks using multiple workers. It supports various datasets (SVHN, CIFAR10, CIFAR100, TinyImageNet) and models (SqueezeNet, ResNet18, ResNet50). Each worker uses SGD as the optimizer, and the project includes features like learning rate scheduling and non-IID data distribution.
 
 Crucially, this project now includes implementations of various **data influence calculation methods (Influence Function, DICE, Delete)** to identify and potentially prune less influential data samples for improved efficiency and performance.
 
