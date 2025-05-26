@@ -1,10 +1,12 @@
 import torch
 import torch.nn as nn
-
+from utils.random import seed_torch
 criterion = nn.CrossEntropyLoss()
 
 class Worker_Vision:
-    def __init__(self, model, rank, optimizer, scheduler, train_loader, device, choose_node, choose_batch, size, train_to_end):
+    def __init__(self, model, rank, optimizer, scheduler, train_loader, device, choose_node, choose_batch, size, train_to_end, seed=None):
+        if seed is not None:
+            seed_torch(seed)  # Support external random seed
         self.model = model
         self.rank = rank
         self.optimizer = optimizer
@@ -28,7 +30,10 @@ class Worker_Vision:
         # Training step
         self.model.train()
         try:
-            batch = next(iter(self.train_loader))
+            # Use fixed batch index
+            if self.current_batch_index >= len(self.train_loader):
+                self.current_batch_index = 0
+            batch = list(self.train_loader)[self.current_batch_index]
             self.current_batch_index += 1
         except StopIteration:
             print("Iteration ended")
@@ -47,7 +52,7 @@ class Worker_Vision:
         self.model.eval()
         with torch.no_grad():
             try:
-                valid_batch = next(iter(valid_loader))
+                valid_batch = list(valid_loader)[0]  # Only use first validation batch
                 valid_data, valid_target = valid_batch[0].to(self.device), valid_batch[1].to(self.device)
                 valid_output = self.model(valid_data)
                 if not isinstance(valid_output, torch.Tensor):

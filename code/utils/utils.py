@@ -3,6 +3,12 @@ import numpy as np
 import os
 import datetime
 import socket
+from utils.random import seed_torch
+from utils.args import parse_args
+
+args = parse_args()
+seed_torch(args.seed)
+
 
 def generate_P(mode, size):
     """

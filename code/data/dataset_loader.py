@@ -20,6 +20,16 @@ def download_url(url, filepath):
         urllib.request.urlretrieve(url, filename=filepath,
                                  reporthook=t.update_to)
 
+class IndexDataset(torch.utils.data.Dataset):
+    """Wraps a dataset to also return the sample index."""
+    def __init__(self, dataset):
+        self.dataset = dataset
+    def __len__(self):
+        return len(self.dataset)
+    def __getitem__(self, idx):
+        data, target = self.dataset[idx]
+        return data, target, idx
+
 def load_dataset(args):
     if args.dataset_name == "cifar10":
         transform = transforms.Compose([
@@ -109,11 +119,11 @@ def load_dataset(args):
         nb_class = 10
     else:
         raise ValueError("Dataset not supported")
-    
-    # 统一裁剪训练集
-    if args.train_ratio < 1.0:
-        train_size = int(len(train_set) * args.train_ratio)
-        rest = len(train_set) - train_size
-        train_set, _ = random_split(train_set, [train_size, rest])
+
+
+    # Wrap all sets with IndexDataset
+    train_set = IndexDataset(train_set)
+    valid_set = IndexDataset(valid_set)
+    test_set = IndexDataset(test_set)
 
     return train_set, valid_set, test_set, nb_class

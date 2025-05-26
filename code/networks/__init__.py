@@ -19,7 +19,4 @@ def load_model(model_name, num_classes, weights=None):
         model = shufflenet_v2_x1_0(weights=ShuffleNet_V2_X1_0_Weights.IMAGENET1K_V1)
     else:
         raise ValueError("Model not supported")
-    # Print model parameters count
-    total_params = sum(p.numel() for p in model.parameters())
-    print(f"Total parameters: {total_params:,}")
     return model 
