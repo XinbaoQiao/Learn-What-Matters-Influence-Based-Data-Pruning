@@ -24,8 +24,7 @@ Crucially, this project now includes implementations of various **data influence
 ```
 decentralized_learning/
 │
-├── main.py                  # Main entry script: argument parsing, data loading, training, and result saving
-├── main_pruned.py           # Main script for pruned training stages (incorporates influence calculation and pruning)
+├── main.py                  # Main script for pruned training stages (incorporates influence calculation and pruning)        
 ├── workers/
 │   └── worker_vision.py     # Worker node training logic
 ├── utils/
